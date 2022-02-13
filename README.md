@@ -12,9 +12,8 @@ around the grid. The packages can be picked up by drones and delivered to client
 packages. The goal is the deliver to most packages possible.
 ### Program Structure
 
-1. ex1.py - the only file that you should modify, implements the specific problem
-2. check.py - the file that includes some wrappers and inputs, the file that you should run
+1. ex1.py - implements the specific problem
+2. check.py - the file that includes some wrappers and inputs
 3. search.py - a file that has implementations of different search algorithms (including
 GBFS, A* and many more)
-4. utils.py - the file that contains some utility functions. You may use the contents of this file
-as you see fit
+4. utils.py - the file that contains some utility functions.
