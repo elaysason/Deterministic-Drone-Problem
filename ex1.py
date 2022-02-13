@@ -3,9 +3,6 @@ import random
 import math
 
 
-ids = ["111111111", "111111111"]
-
-
 class DroneProblem(search.Problem):
     """This class implements a medical problem according to problem description file"""
 
