@@ -12,8 +12,20 @@ around the grid. The packages can be picked up by drones and delivered to client
 packages. The goal is the deliver to most packages possible.
 ### Program Structure
 
-1. ex1.py - implements the specific problem
+1. ex1.py - implements the specific problem, the soultion would be applied here.
 2. check.py - the file that includes some wrappers and inputs
 3. search.py - a file that has implementations of different search algorithms (including
 GBFS, A* and many more)
 4. utils.py - the file that contains some utility functions.
+
+### Installation
+1.Open the terminal
+
+2.Clone the project by:
+```
+    $ git clone https://github.com/elaysason/Deterministic-Drone-Problem.git
+```
+3.Run the check.py file by:
+```
+    $ python3 check.py
+```
