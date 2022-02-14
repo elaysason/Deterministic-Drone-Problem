@@ -6,8 +6,6 @@ import random
 import math
 import itertools
 from collections import deque
-ids = ["307951384", "322995358"]
-
 
 def dict_to_tuples(dict, key):
     if key == 'clients':
