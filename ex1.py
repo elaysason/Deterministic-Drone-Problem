@@ -99,9 +99,12 @@ class DroneProblem(search.Problem):
     """
 
     def __init__(self, initial):
-        """Don't forget to implement the goal test
-        You should change the initial to your own representation.
-        search.Problem.__init__(self, initial) creates the root node"""
+        """ 
+        Parameters
+        ----------
+        intial: tuple
+            Intial state of the enviorment
+        """
         prob_path = []
         i = 0
         for row in initial['map']:
@@ -120,9 +123,17 @@ class DroneProblem(search.Problem):
         search.Problem.__init__(self, initial)
 
     def actions(self, state):
-        """Returns all the actions that can be executed in the given
-        state. The result should be a tuple (or other iterable) of actions
-        as defined in the problem description file"""
+        """
+        Parameters
+        ----------
+        state : Dictionary
+            Current state of the environment.
+        
+        Returns
+        ----------
+        list of tuples: All the actions that can be executed in the given
+        state.
+        """
         Alldrones_actions = []
         All_comb = []
         drones_pos = state[0][1]  # drone_pos==((3,3),(1,0))
@@ -182,6 +193,16 @@ class DroneProblem(search.Problem):
         return All_comb
 
     def update_state(self, state):
+        """
+        Update the state saved with the changes needed.
+        Parameters
+        ----------
+        state : Dictionary
+            Current state of the environment.
+        Returns
+        ----------
+        tuple : the changed state
+        """
         to_change = list(state)
         clients_values = list(state[2][1])
         clients_keys = state[2][0]
@@ -223,6 +244,23 @@ class DroneProblem(search.Problem):
         return False
 
     def distance_in_map(self, state, source, destination):
+        """
+        Calculate the accurate distance from the soucre to the desination.
+        
+        Parameters
+        ----------
+        state : Dictionary
+            Current state of the environment.
+        source : list of int.
+            The source point.            
+        destination : list of int.
+            The destination point.    
+        
+        Returns
+        ----------
+        int : The accurate between the points.
+        """
+        
         directions = [[0, 1], [1, 0], [0, -1], [-1, 0]]
         q = deque()
         q.append([source[0], source[1], 0])
@@ -243,14 +281,19 @@ class DroneProblem(search.Problem):
                     visited.add((new_point[0], new_point[1]))
         return sys.maxsize
 
-    def dict_min(self, dict_values):
-        min_val = sys.maxsize
-        for value in dict_values:
-            if value < min_val:
-                min_val = value
-        return min_val
-
     def closet_drone(self, state, package_location):
+         """
+        Parameters
+        ----------
+        state : Dictionary
+            Current state of the environment.
+        package_location : tuple
+            the location of the package
+        
+        Returns
+        ----------
+        int : The min distance from the package to a drone
+        """
         min = sys.maxsize
         i = 0
         for drone_location in state[0][1]:
@@ -261,6 +304,18 @@ class DroneProblem(search.Problem):
         return min
 
     def package_location(self, state, package):
+        """
+        Parameters
+        ----------
+        state : Dictionary
+            Current state of the environment.
+        package : str
+            the name of the package
+        
+        Returns
+        ----------
+        int : The location of the package
+        """
         if package in state[1][0]:
             package_num = state[1][0].index(package)
             return state[1][1][package_num]
@@ -286,11 +341,6 @@ class DroneProblem(search.Problem):
                 distance += len(client_value[1]) ** 4
         distance += len(state[1][0]) * 2 + len(self.prob_path) ** 5
         return distance
-
-
-    """Feel free to add your own functions
-    (-2, -2, None) means there was a timeout"""
-
 
 def create_drone_problem(game):
     return DroneProblem(game)
