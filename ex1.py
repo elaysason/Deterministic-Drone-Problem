@@ -81,7 +81,22 @@ def deliver(state, action):
 
 
 class DroneProblem(search.Problem):
-    """This class implements a medical problem according to problem description file"""
+    """
+    A class used to represent a drone.
+
+    Attributes
+    ----------
+    prob_path : list of tuples
+        A list of the problomatic points for passage of drones. 
+    map_size : tuple of ints
+        The size of the map.
+    package_number : int
+        Number of packages in the game.
+    step : int
+        The current step number.
+    turns_per_package : list of int.
+        How many turns it took to deliver each package.
+    """
 
     def __init__(self, initial):
         """Don't forget to implement the goal test
