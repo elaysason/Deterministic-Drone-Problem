@@ -8,6 +8,17 @@ import itertools
 from collections import deque
 
 def dict_to_tuples(dict, key):
+     """
+     Parameters
+     ----------
+     dict : Dictionary
+         Current state of the environment.
+     
+     Returns
+     ----------
+     tuple : the dict after conveting all dicts to tuples and performing needed transformations
+     state.
+     """
     if key == 'clients':
         dict_paths = {}
         for name in dict.keys():
@@ -20,6 +31,18 @@ def dict_to_tuples(dict, key):
 
 
 def move(state, action):
+    """
+    Parameters
+    ----------
+    state : tuple
+        Current state of the environment.
+    action : tuple
+        The move action itself.
+    
+    Returns
+    ----------
+    tuple : The state after performing the action
+    """
     to_change = list(state)
     drones_location = list(to_change[0][1])
     drone_num = to_change[0][0].index(action[1])
@@ -34,6 +57,18 @@ def move(state, action):
 
 
 def pick_up(state, action):
+    """
+    Parameters
+    ----------
+    state : tuple
+        Current state of the environment.
+    action : tuple
+        The pick up action itself.
+    
+    Returns
+    ----------
+    tuple : The state after performing the action
+    """
     to_change = list(state)
     orders = list(to_change[3])
     drone_num = to_change[0][0].index(action[1])
@@ -54,6 +89,18 @@ def pick_up(state, action):
 
 
 def deliver(state, action):
+    """
+    Parameters
+    ----------
+    state : tuple
+        Current state of the environment.
+    action : tuple
+        The deliver action itself.
+    
+    Returns
+    ----------
+    tuple : The state after performing the action
+    """
     to_change = list(state)
     orders = list(to_change[3])
     drone_num = to_change[0][0].index(action[1])
@@ -126,7 +173,7 @@ class DroneProblem(search.Problem):
         """
         Parameters
         ----------
-        state : Dictionary
+        state : tuple
             Current state of the environment.
         
         Returns
@@ -197,7 +244,7 @@ class DroneProblem(search.Problem):
         Update the state saved with the changes needed.
         Parameters
         ----------
-        state : Dictionary
+        state : tuple
             Current state of the environment.
         Returns
         ----------
@@ -249,7 +296,7 @@ class DroneProblem(search.Problem):
         
         Parameters
         ----------
-        state : Dictionary
+        state : tuple
             Current state of the environment.
         source : list of int.
             The source point.            
@@ -285,7 +332,7 @@ class DroneProblem(search.Problem):
          """
         Parameters
         ----------
-        state : Dictionary
+        state : tuple
             Current state of the environment.
         package_location : tuple
             the location of the package
@@ -307,7 +354,7 @@ class DroneProblem(search.Problem):
         """
         Parameters
         ----------
-        state : Dictionary
+        state : tuple
             Current state of the environment.
         package : str
             the name of the package
